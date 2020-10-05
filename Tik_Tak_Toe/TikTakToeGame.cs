@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Text;
 
 namespace TikTakToe
@@ -37,15 +38,17 @@ namespace TikTakToe
                 Console.WriteLine("-------------------");  
             }
         }
-        public void Move(int input)
+        public int Move(int input)
         {
+            int count = 0;
             if (board[input] != ' ')
             {
-                Console.WriteLine("Position already occupied. Enter new position");
+                Console.WriteLine("Position already occupied. Enter new position");              
             }
-            Console.WriteLine("What do you want to enter (X or O)");
+            Console.WriteLine("What do you want to enter (X or O)?");
             char inputChar = char.Parse(Console.ReadLine());
             board[input] = inputChar;
+            return count;
         }
 
     }
