@@ -20,6 +20,7 @@ namespace TikTakToe
             {
                 goto start;
             }
+            game.ShowBoard();
         }
     }
 }
