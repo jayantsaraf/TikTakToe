@@ -6,7 +6,13 @@ namespace TikTakToe
     {
         public void UC1_CreateBoard()
         {
-            int[] board = new int[20];
+            int i = 1;
+            int[] board = new int[10];
+            for(i=1;i<=10;i++)
+            {
+                board[i++] = 0;
+            }
+            
         }
     }
     public class Program
