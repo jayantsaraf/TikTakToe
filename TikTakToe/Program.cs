@@ -9,6 +9,7 @@ namespace TikTakToe
             Console.WriteLine("Welcome to Tik Tak Toe program!");
             TikTakToeGame game = new TikTakToeGame();
             game.CreateBoard();
+            game.Input();
         }
     }
 }
