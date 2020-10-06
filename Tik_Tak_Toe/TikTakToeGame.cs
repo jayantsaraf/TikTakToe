@@ -17,13 +17,14 @@ namespace TikTakToe
                 board[i] = ' ';
             }
         }
-        public void Input()
+        public char Input()
         {
             int i = 1;
             Console.WriteLine("What do you want to input(X or O)?");
             char input = char.Parse(Console.ReadLine());
             board[i] = input;
             i++;
+            return input;
         }
         public void ShowBoard()
         {
@@ -39,9 +40,10 @@ namespace TikTakToe
                 Console.WriteLine("-------------------");  
             }
         }
-        public int Move(int input)
+        public int Move(int input, out char inputChar)
         {
             int count = 1;
+            inputChar = ' ';
             if (board[input] != ' ')
             {
                 Console.WriteLine("Position already occupied. Enter new position");
@@ -49,22 +51,43 @@ namespace TikTakToe
                 return count;
             }
             Console.WriteLine("What do you want to enter (X or O)?");
-            char inputChar = char.Parse(Console.ReadLine());
+            inputChar = char.Parse(Console.ReadLine());
             board[input] = inputChar;
             return count;
         }
-        public void Toss()
+        public int Toss()
         {
             Random random = new Random();
             int toss = random.Next(0, 2);
             if(toss==0)
             {
                 Console.WriteLine("Computer's turn");
+                return 0;
             }
             else
             {
                 Console.WriteLine("Player's turn");
+                return 1;
             }
+        }
+        public int CheckWinner(char ch)
+        {
+            if ((board[1] == ch && board[2] == ch && board[3] == ch) ||
+                (board[4] == ch && board[5] == ch && board[6] == ch) ||
+                (board[7] == ch && board[8] == ch && board[9] == ch) ||
+                (board[1] == ch && board[4] == ch && board[7] == ch) ||
+                (board[2] == ch && board[5] == ch && board[8] == ch) ||
+                (board[3] == ch && board[6] == ch && board[9] == ch) ||
+                (board[1] == ch && board[5] == ch && board[9] == ch) ||
+                (board[3] == ch && board[5] == ch && board[7] == ch)
+                )
+            {
+                Console.WriteLine("You won the game!");
+                ShowBoard();
+                return 1;
+            }
+            return 0;
+                
         }
 
     }
