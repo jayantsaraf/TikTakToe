@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace TikTakToe
@@ -82,13 +83,37 @@ namespace TikTakToe
                 (board[3] == ch && board[5] == ch && board[7] == ch)
                 )
             {
-                Console.WriteLine("You won the game!");
+                Console.WriteLine("Won the game!");
                 ShowBoard();
                 return 1;
             }
             return 0;
                 
         }
-
+        public char ComputerPlay()
+        {
+            Random random = new Random();
+            PlayAgain:
+            int compPos = random.Next(1, 9);
+            if(board[compPos] == ' ')
+            {
+                int move = random.Next(0, 2);
+                if (move == 0)
+                {
+                    board[compPos] = 'X';
+                    return 'X';
+                }
+                else
+                {
+                    board[compPos] = 'O';
+                    return 'O';
+                }
+                
+            }
+            else
+            {
+                goto PlayAgain;
+            }
+        }
     }
 }

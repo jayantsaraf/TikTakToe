@@ -26,12 +26,22 @@ namespace TikTakToe
             while (c==1)
             {
                 startGame:
+                Console.WriteLine("Computer's turn");
+                char compInput = game.ComputerPlay();
+                int winnerResult = game.CheckWinner(compInput);
+                if (winnerResult == 1)
+                {
+                    c = 0;
+                    break;
+                }               
                 Console.WriteLine("Enter choice 1.Input next number, 2.Show board, 3.Exit");
                 int choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
                         TakeInput:
+                        Console.WriteLine("Check winning position");
+                        game.ShowBoard();
                         Console.WriteLine("Enter the position starting from top left you want to enter your next character");
                         int input = int.Parse(Console.ReadLine());
                         int count = game.Move(input, out char inputChar);
@@ -39,7 +49,7 @@ namespace TikTakToe
                         {
                             goto TakeInput;
                         }
-                        int winnerResult = game.CheckWinner(inputChar);
+                        winnerResult = game.CheckWinner(inputChar);
                         if(winnerResult==0)
                         {
                             goto startGame;
