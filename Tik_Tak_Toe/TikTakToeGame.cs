@@ -17,13 +17,14 @@ namespace TikTakToe
                 board[i] = ' ';
             }
         }
-        public void Input()
+        public char Input()
         {
             int i = 1;
             Console.WriteLine("What do you want to input(X or O)?");
             char input = char.Parse(Console.ReadLine());
             board[i] = input;
             i++;
+            return input;
         }
         public void ShowBoard()
         {
@@ -65,6 +66,24 @@ namespace TikTakToe
             {
                 Console.WriteLine("Player's turn");
             }
+        }
+        public int CheckWinner(char ch)
+        {
+            if ((board[1] == ch && board[2] == ch && board[3] == ch) ||
+                (board[4] == ch && board[5] == ch && board[6] == ch) ||
+                (board[7] == ch && board[8] == ch && board[9] == ch) ||
+                (board[1] == ch && board[4] == ch && board[7] == ch) ||
+                (board[2] == ch && board[5] == ch && board[8] == ch) ||
+                (board[3] == ch && board[6] == ch && board[9] == ch) ||
+                (board[1] == ch && board[5] == ch && board[9] == ch) ||
+                (board[3] == ch && board[5] == ch && board[7] == ch)
+                )
+            {
+                Console.WriteLine("You won the game!");
+                return 1;
+            }
+            return 0;
+                
         }
 
     }
