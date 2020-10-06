@@ -10,6 +10,7 @@ namespace TikTakToe
             Console.WriteLine("Welcome to Tik Tak Toe program!");
             TikTakToeGame game = new TikTakToeGame();
             game.CreateBoard();
+            game.Toss();
             game.Input();
             game.ShowBoard();
             start:
