@@ -40,7 +40,7 @@ namespace TikTakToe
                 {
                     case 1:
                         TakeInput:
-                        Console.WriteLine("Check winning position");
+                        Console.WriteLine("Check if opponent can win");
                         game.ShowBoard();
                         Console.WriteLine("Enter the position starting from top left you want to enter your next character");
                         int input = int.Parse(Console.ReadLine());
