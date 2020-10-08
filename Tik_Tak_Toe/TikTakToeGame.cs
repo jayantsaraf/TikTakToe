@@ -10,14 +10,13 @@ namespace TikTakToe
     public class TikTakToeGame
     {
         char[] board = new char[10];
-        public char[] CreateBoard()
+        public void CreateBoard()
         {
             int i = 0;
             for (i = 1; i < 10; i++)
             {
                 board[i] = ' ';
             }
-            return board;
         }
         public char Input()
         {
@@ -39,7 +38,7 @@ namespace TikTakToe
                     c++;
                 }
                 Console.WriteLine("\n");
-                Console.WriteLine("-------------------");  
+                Console.WriteLine("-------------------");
             }
         }
         public int Move(int input, out char inputChar)
@@ -61,7 +60,7 @@ namespace TikTakToe
         {
             Random random = new Random();
             int toss = random.Next(0, 2);
-            if(toss==0)
+            if (toss == 0)
             {
                 Console.WriteLine("Computer's turn");
                 return 0;
@@ -72,7 +71,7 @@ namespace TikTakToe
                 return 1;
             }
         }
-        public int CheckWinner(char[] board, char ch)
+        public int CheckWinner(char ch)
         {
             if ((board[1] == ch && board[2] == ch && board[3] == ch) ||
                 (board[4] == ch && board[5] == ch && board[6] == ch) ||
@@ -87,14 +86,14 @@ namespace TikTakToe
                 return 1;
             }
             return 0;
-                
+
         }
         public char ComputerPlay()
         {
             Random random = new Random();
             PlayAgain:
             int compPos = random.Next(1, 9);
-            if(board[compPos] == ' ')
+            if (board[compPos] == ' ')
             {
                 int move = random.Next(0, 2);
                 if (move == 0)
@@ -107,7 +106,7 @@ namespace TikTakToe
                     board[compPos] = 'O';
                     return 'O';
                 }
-                
+
             }
             else
             {
@@ -116,23 +115,26 @@ namespace TikTakToe
         }
         public int CheckWinningPosition(char compInput)
         {
-            char[] boardCopy = new char[10];
-            boardCopy = CreateBoard();
-            boardCopy = board;
-            for(int i =1; i<board.Length;i++)
+            int winningPos = 0;
+            for (winningPos = 1; winningPos < board.Length; winningPos++)
             {
-                if (boardCopy[i]==' ')
+                if (board[winningPos] == ' ')
                 {
-                    boardCopy[i] = compInput;
-                    int winningPositionReult = CheckWinner(boardCopy,compInput);
-                    if(winningPositionReult==1)
+                    board[winningPos] = compInput;
+                    int q = CheckWinner(compInput);
+                    if (q == 1)
                     {
-                        return i;
+                        board[winningPos] = ' ';
+                        return winningPos;
+                    }
+                    else
+                    {
+                        board[winningPos] = ' ';
+                        return 0;
                     }
                 }
             }
             return 0;
         }
-
     }
 }
