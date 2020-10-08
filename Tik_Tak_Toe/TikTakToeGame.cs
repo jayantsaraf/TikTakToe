@@ -116,7 +116,7 @@ namespace TikTakToe
         public int CheckWinningPosition(char compInput)
         {
             int winningPos = 0;
-            for (winningPos = 1; winningPos < board.Length; winningPos++)
+            for (winningPos = 1; winningPos < 10; winningPos++)
             {
                 if (board[winningPos] == ' ')
                 {
