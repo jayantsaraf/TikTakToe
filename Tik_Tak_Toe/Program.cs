@@ -23,7 +23,7 @@ namespace TikTakToe
             }
             char inputByUser = game.Input();
             int c = 1;
-            while (c==1)
+            while (c == 1)
             {
                 startGame:
                 Console.WriteLine("Computer's turn");
@@ -32,16 +32,23 @@ namespace TikTakToe
                 if (winnerResult == 1)
                 {
                     c = 0;
+                    Console.WriteLine("Computer Won the game");
+                    game.ShowBoard();
                     break;
-                }               
+                }
                 Console.WriteLine("Enter choice 1.Input next number, 2.Show board, 3.Exit");
                 int choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
+                        
+                        int winningPositionResult = game.CheckWinningPosition(compInput);
+                        if (winningPositionResult != 0)
+                        {
+                            Console.WriteLine("Opponent can win. To block make move at position: " + winningPositionResult);
+                            game.ShowBoard();
+                        }
                         TakeInput:
-                        Console.WriteLine("Check if opponent can win");
-                        game.ShowBoard();
                         Console.WriteLine("Enter the position starting from top left you want to enter your next character");
                         int input = int.Parse(Console.ReadLine());
                         int count = game.Move(input, out char inputChar);
@@ -50,12 +57,14 @@ namespace TikTakToe
                             goto TakeInput;
                         }
                         winnerResult = game.CheckWinner(inputChar);
-                        if(winnerResult==0)
+                        if (winnerResult == 0)
                         {
                             goto startGame;
                         }
                         else
                         {
+                            Console.WriteLine("You won the game");
+                            game.ShowBoard();
                             c = 0;
                         }
                         break;
@@ -71,3 +80,5 @@ namespace TikTakToe
         }
     }
 }
+
+

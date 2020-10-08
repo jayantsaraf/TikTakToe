@@ -38,7 +38,7 @@ namespace TikTakToe
                     c++;
                 }
                 Console.WriteLine("\n");
-                Console.WriteLine("-------------------");  
+                Console.WriteLine("-------------------");
             }
         }
         public int Move(int input, out char inputChar)
@@ -60,7 +60,7 @@ namespace TikTakToe
         {
             Random random = new Random();
             int toss = random.Next(0, 2);
-            if(toss==0)
+            if (toss == 0)
             {
                 Console.WriteLine("Computer's turn");
                 return 0;
@@ -83,19 +83,17 @@ namespace TikTakToe
                 (board[3] == ch && board[5] == ch && board[7] == ch)
                 )
             {
-                Console.WriteLine("Won the game!");
-                ShowBoard();
                 return 1;
             }
             return 0;
-                
+
         }
         public char ComputerPlay()
         {
             Random random = new Random();
             PlayAgain:
             int compPos = random.Next(1, 9);
-            if(board[compPos] == ' ')
+            if (board[compPos] == ' ')
             {
                 int move = random.Next(0, 2);
                 if (move == 0)
@@ -108,12 +106,35 @@ namespace TikTakToe
                     board[compPos] = 'O';
                     return 'O';
                 }
-                
+
             }
             else
             {
                 goto PlayAgain;
             }
+        }
+        public int CheckWinningPosition(char compInput)
+        {
+            int winningPos = 0;
+            for (winningPos = 1; winningPos < 10; winningPos++)
+            {
+                if (board[winningPos] == ' ')
+                {
+                    board[winningPos] = compInput;
+                    int q = CheckWinner(compInput);
+                    if (q == 1)
+                    {
+                        board[winningPos] = ' ';
+                        return winningPos;
+                    }
+                    else
+                    {
+                        board[winningPos] = ' ';
+                        return 0;
+                    }
+                }
+            }
+            return 0;
         }
     }
 }
