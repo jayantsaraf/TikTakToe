@@ -48,6 +48,19 @@ namespace TikTakToe
                             Console.WriteLine("Opponent can win. To block make move at position: " + winningPositionResult);
                             game.ShowBoard();
                         }
+                        else
+                        {
+                            int[] cornerMoves = { 1, 3, 7, 9 };
+                            int[] availableCorners = game.isSpaceFree(cornerMoves);
+                            Console.WriteLine("Following corner spaces are available: ");
+                            for(int i=0;i<availableCorners.Length;i++)
+                            {
+                                if(availableCorners[i] != 0)
+                                {
+                                    Console.WriteLine(availableCorners[i]);
+                                } 
+                            }
+                        }
                         TakeInput:
                         Console.WriteLine("Enter the position starting from top left you want to enter your next character");
                         int input = int.Parse(Console.ReadLine());
