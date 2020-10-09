@@ -51,7 +51,27 @@ namespace TikTakToe
                         else
                         {
                             int[] cornerMoves = { 1, 3, 7, 9 };
-                            int[] availableCorners = game.isSpaceFree(cornerMoves);
+                            int[] availableCorners = new int[] { };
+                            availableCorners= game.IsSpaceFree(cornerMoves);
+                            int checkCenterStatus = game.IsCenterFree();
+                            if(availableCorners.Length==0 && checkCenterStatus==1)
+                            {
+                                Console.WriteLine("Corners are not available. You can move to center position: 5");
+                            }
+                            else if(availableCorners.Length==0)
+                            {
+                                int[] allPos = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                                int[] availablePos = new int[] { };
+                                availablePos = game.IsSpaceFree(allPos);
+                                Console.WriteLine("Corners and Center is not available. Following spaces are available: ");
+                                for (int i = 0; i < availablePos.Length; i++)
+                                {
+                                    if (availablePos[i] != 0)
+                                    {
+                                        Console.WriteLine(availablePos[i]);
+                                    }
+                                }
+                            }
                             Console.WriteLine("Following corner spaces are available: ");
                             for(int i=0;i<availableCorners.Length;i++)
                             {
