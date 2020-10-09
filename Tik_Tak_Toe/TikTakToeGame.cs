@@ -139,8 +139,8 @@ namespace TikTakToe
         public int[] IsSpaceFree(int[] checkArray)
         {
             int arrayPos = 0, m = 0;
-            int[] arrayOfFreeSpace = new int[] { };
-            for(arrayPos=0;arrayPos<arrayOfFreeSpace.Length;arrayPos++)
+            int[] arrayOfFreeSpace = new int[checkArray.Length];
+            for(arrayPos=0;arrayPos<checkArray.Length;arrayPos++)
             {
                 if(board[checkArray[arrayPos]]==' ')
                 {
