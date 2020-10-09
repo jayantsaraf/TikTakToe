@@ -136,11 +136,11 @@ namespace TikTakToe
             }
             return 0;
         }
-        public int[] isSpaceFree(int[] checkArray)
+        public int[] IsSpaceFree(int[] checkArray)
         {
             int arrayPos = 0, m = 0;
-            int[] arrayOfFreeSpace = checkArray;
-            for(arrayPos=0;arrayPos<checkArray.Length;arrayPos++)
+            int[] arrayOfFreeSpace = new int[] { };
+            for(arrayPos=0;arrayPos<arrayOfFreeSpace.Length;arrayPos++)
             {
                 if(board[checkArray[arrayPos]]==' ')
                 {
@@ -154,6 +154,14 @@ namespace TikTakToe
                 }
             }
             return arrayOfFreeSpace;
+        }
+        public int IsCenterFree()
+        {
+            if(board[5]==' ')
+            {
+                return 1;
+            }
+            return 0;
         }
     }
 }
