@@ -10,7 +10,6 @@ namespace TikTakToe
     {
         public static void Main(string[] args)
         {
-            int checkResult = 0;
             Console.WriteLine("Welcome to Tik Tak Toe program!");
             TikTakToeGame game = new TikTakToeGame();
             game.CreateBoard();
